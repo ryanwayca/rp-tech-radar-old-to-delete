@@ -322,55 +322,57 @@ function radar_visualization(config) {
   if (config.print_layout) {
 
     // title
+    /*
     radar.append("text")
       .attr("transform", translate(title_offset.x, title_offset.y))
       .text(config.title)
       .style("font-family", "Montserrat")
       .style("font-size", "50")
       .style("font-weight", "bold");
+    */
 
     // footer
     radar.append("text")
-      .attr("transform", translate(-footer_offset.x, footer_offset.y))
+      .attr("transform", translate(footer_offset.x, footer_offset.y))
       .text("● radar entry     ▲ moved up     ▼ moved down")
       .attr("xml:space", "preserve")
-      .attr("text-anchor", "end")
+      .attr("text-anchor", "start")
       .style("font-family", "Montserrat")
       .style("font-size", "18");
 
     // color legend
     radar.append("text")
-      .attr("transform", translate(footer_offset.x, footer_offset.y))
+      .attr("transform", translate(colorLegend_offset.x-400, title_offset.y-20))
       .attr("xml:space", "preserve")
       //.attr("text-anchor", "middle")
       .text("⬤  "+config.categories[0].name)
       .style("font-family", "Montserrat")
       .style("font-weight", "500")
-      .style("font-size", "18")
+      .style("font-size", "20")
       .style("fill", config.categories[0].color);
     radar.append("text")
-      .attr("transform", translate(footer_offset.x+150, footer_offset.y))
+      .attr("transform", translate(colorLegend_offset.x-180, title_offset.y-20))
       .attr("xml:space", "preserve")
       .text("⬤  "+config.categories[1].name)
       .style("font-family", "Montserrat")
       .style("font-weight", "500")
-      .style("font-size", "18")
+      .style("font-size", "20")
       .style("fill", config.categories[1].color);
     radar.append("text")
-      .attr("transform", translate(footer_offset.x+300, footer_offset.y))
+      .attr("transform", translate(colorLegend_offset.x+50, title_offset.y-20))
       .attr("xml:space", "preserve")
       .text("⬤  "+config.categories[2].name)
       .style("font-family", "Montserrat")
       .style("font-weight", "500")
-      .style("font-size", "18")
+      .style("font-size", "20")
       .style("fill", config.categories[2].color);
     radar.append("text")
-      .attr("transform", translate(footer_offset.x+480, footer_offset.y))
+      .attr("transform", translate(colorLegend_offset.x+270, title_offset.y-20))
       .attr("xml:space", "preserve")
       .text("⬤  "+config.categories[3].name)
       .style("font-family", "Montserrat")
       .style("font-weight", "500")
-      .style("font-size", "18")
+      .style("font-size", "20")
       .style("fill", config.categories[3].color);
 
 
@@ -422,11 +424,17 @@ function radar_visualization(config) {
               .style("cursor", "pointer")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d); blipOver(d); })
               .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); blipOut(d); })
+
               // open link on clicking legendItem
               .on("click", function(d) { window.open(d.link); });
+
+              // on click, jump to # anchor in the portfolio section with the id associated to the item clicked
+              //.on("click", function(d) { window.open("#" + d.id); });
       }
     }
   }
+  
+  
 
   // layer for entries
   var rink = radar.append("g")
