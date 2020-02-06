@@ -340,6 +340,14 @@ function radar_visualization(config) {
       .style("font-family", "Montserrat")
       .style("font-size", "18");
 
+    radar.append("text")
+      .attr("transform", translate(-footer_offset.x-350, footer_offset.y))
+      .text("* Zoom in as needed on mobile devices.")
+      .attr("xml:space", "preserve")
+      .attr("text-anchor", "start")
+      .style("font-family", "Montserrat")
+      .style("font-size", "18");
+
     // color legend
     radar.append("text")
       .attr("transform", translate(colorLegend_offset.x-400, title_offset.y-20))
